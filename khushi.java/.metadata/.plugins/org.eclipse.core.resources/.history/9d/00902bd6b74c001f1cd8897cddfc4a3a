@@ -1,0 +1,63 @@
+package Tree;
+
+import java.util.Scanner;
+
+public class BinaryTree {
+
+    Scanner sc = new Scanner(System.in);
+    
+    public class Node {
+        int data;
+        Node left;
+        Node right;
+    }
+    
+    private Node root;
+
+    public static void main(String[] args) {
+        BinaryTree bt = new BinaryTree();
+        bt.root = bt.createroot();
+        bt.display(bt.root);
+    }
+
+    public BinaryTree() {
+        // Constructor logic if needed
+    }
+
+    public Node createroot() {
+        int item = sc.nextInt();  // Read integer value
+        Node nn = new Node();
+        nn.data = item;
+        boolean hlc = sc.nextBoolean();  // Read boolean for left child
+        if (hlc) {
+            nn.left = createroot();  // Recursively create left subtree
+        }
+        boolean hrc = sc.nextBoolean();  // Read boolean for right child
+        if (hrc) {
+            nn.right = createroot();  // Recursively create right subtree
+        }
+        return nn;
+    }
+
+    public void display(Node nn) {
+        if (nn == null) {
+            return;
+        }
+        String s = "";
+        s = s + nn.data;
+        s = "<--" + s + "-->";
+        if (nn.left != null) {
+            s = nn.left.data + s;
+        } else {
+            s = "." + s;
+        }
+        if (nn.right != null) {
+            s = s + nn.right.data;
+        } else {
+            s = s + ".";
+        }
+        System.out.println(s);
+        display(nn.left);
+        display(nn.right);
+    }
+}

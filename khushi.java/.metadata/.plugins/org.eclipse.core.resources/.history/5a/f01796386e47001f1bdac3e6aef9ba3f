@@ -1,0 +1,38 @@
+package dp;
+
+import java.util.ArrayList;
+
+public class Heap {
+  public ArrayList<Integer> data1=new ArrayList<>();
+
+	public void add(int val) {
+		data1.add(val);
+		upheapify(data1.size()-1);
+	}
+	public void upheapify(int ci) {
+		int pi=(ci-1)/2;
+		if(data1.get(pi)>data1.get(ci)) {
+			Swap(pi,ci);
+			upheapify(pi);
+			
+		}
+	
+	}
+	public void Swap(int i,int j) {
+		int ith=data1.get(i);
+		int jth=data1.get(j);
+		data1.set(i,jth);
+		data1.set(j,ith);
+		
+	}
+	public static void main(String[] args) {
+		Heap heap=new Heap();
+		  heap.add(10);
+	        heap.add(5);
+	        heap.add(20);
+	        heap.add(2);
+	        System.out.println(heap.data1);
+		
+	}
+
+}
